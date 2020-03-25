@@ -1,5 +1,6 @@
 # Si2-Project
 Project for a discipline called Sistemas de Informação 2 on University UNIFACISA
+A simple CRUD with Spring boot using H2.
 
 ## Requirements
 
