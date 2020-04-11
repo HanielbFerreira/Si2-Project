@@ -24,6 +24,10 @@ public class Book {
 	@NotNull(message = "The quantity of pages cannot be null")
 	@Min(value=10, message = "The book must contain at least 10 pages")
 	private int pages;
+	
+	@NotEmpty(message = "Enter the comments of the book") 
+	private String comments;
+
 
 	public long getId() {
 		return id;
@@ -57,6 +61,12 @@ public class Book {
 		this.pages = pages;
 	}
 	
-	
+	public String getComments() {
+		return comments;
+	}
 
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	
 }
