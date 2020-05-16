@@ -1,22 +1,28 @@
 package com.unifacisa.si2.domains;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "Book")
 public class Book {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private long id;
 
-	@NotEmpty(message = "Enter the name of the book publisher")
-	private String bookPublisher;
+	@ManyToOne
+//	@NotEmpty(message = "Enter the name of the publisher") 
+	private BookPublisher bookPublisher;
 
 	@NotEmpty(message = "Enter the title of the book") 
 	private String title;
@@ -37,11 +43,11 @@ public class Book {
 		this.id = id;
 	}
 
-	public String getBookPublisher() {
+	public BookPublisher getBookPublisher() {
 		return bookPublisher;
 	}
 
-	public void setBookPublisher(String bookPublisher) {
+	public void setBookPublisher(BookPublisher bookPublisher) {
 		this.bookPublisher = bookPublisher;
 	}
 

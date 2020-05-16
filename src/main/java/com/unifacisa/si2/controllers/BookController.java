@@ -35,6 +35,13 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(bookService.findAll(), HttpStatus.OK);
 	}
 	
+	@CrossOrigin
+	@GetMapping("/publisher/{title}")
+	public ResponseEntity<List<Book>> getAllBooksPublisherByTitle(@PathVariable String title) {
+		return new ResponseEntity<List<Book>>(bookService.findByBookPublisherTitle(title), HttpStatus.OK);
+	}
+	
+	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<Book> getBookById(@PathVariable long id) throws IdNotFoundException {
 		return new ResponseEntity<Book>(bookService.findBookById(id), HttpStatus.OK);
@@ -53,6 +60,7 @@ public class BookController {
 		return new ResponseEntity<String>("Book successfully deleted", HttpStatus.OK);
 	}
 	
+	@CrossOrigin
 	@PutMapping("/{id}")
 	public ResponseEntity<Book> updateBook(@PathVariable long id,@Valid @RequestBody Book book) throws IdNotFoundException {
 		return new ResponseEntity<Book>(bookService.updateBook(id, book), HttpStatus.OK);
