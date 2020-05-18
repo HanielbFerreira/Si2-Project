@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.unifacisa.si2.domains.Book;
+import com.unifacisa.si2.dtos.BookDto;
 import com.unifacisa.si2.exceptions.IdNotFoundException;
 import com.unifacisa.si2.exceptions.InvalidCreationException;
+import com.unifacisa.si2.repositories.BookPublisherRepository;
 import com.unifacisa.si2.repositories.BookRepository;
 
 @Service
@@ -16,16 +18,29 @@ public class BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
-
-	public Book createBook(Book book) throws InvalidCreationException {
-		if (book == null) {
+	
+	@Autowired
+	private BookPublisherRepository bookPublisherRepository;
+	
+	public Book createBook(BookDto bookDto) throws InvalidCreationException {
+		if (bookDto == null) {
 			throw new InvalidCreationException("Book can not be null");
 		}
+		
+		Book book = new Book();
+		book.setBookPublisher(bookPublisherRepository.findById(bookDto.getBookPublisherId()).get());
+		book.setPages(bookDto.getPages());
+		book.setTitle(bookDto.getTitle());	
+				
 		return bookRepository.save(book);
-	}
+	}	
 
 	public List<Book> findAll() {
 		return bookRepository.findAll();
+	}
+	
+	public List<Book> findByBookPublisherTitle(String title) {
+		return bookRepository.findByBookPublisherName(title);
 	}
 
 	@NotFound
