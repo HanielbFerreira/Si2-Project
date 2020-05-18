@@ -10,6 +10,6 @@ import com.unifacisa.si2.domains.Book;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>{
 	
-	List<Book> findByBookPublisherTitle(String title);
+	List<Book> findByBookPublisherName(String title);
 
 }

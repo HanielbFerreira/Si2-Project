@@ -13,6 +13,14 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Books</name>
 	<description>Exercicio para a disciplina de SI2(Sistemas de informação 2) na universidade UNIFACISA</description>
+	
+	<developers>
+		<developer>
+			<id>hanbarfe</id>
+            <name>Haniel Barros</name>
+            <email>hanielbarrosf@gmail.com</email>
+		</developer>
+	</developers>
 
 	<properties>
 		<java.version>13</java.version>

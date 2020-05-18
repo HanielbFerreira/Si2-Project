@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unifacisa.si2.domains.Book;
+import com.unifacisa.si2.dtos.BookDto;
 import com.unifacisa.si2.exceptions.IdNotFoundException;
 import com.unifacisa.si2.exceptions.InvalidCreationException;
 import com.unifacisa.si2.services.BookService;
@@ -36,12 +37,6 @@ public class BookController {
 	}
 	
 	@CrossOrigin
-	@GetMapping("/publisher/{title}")
-	public ResponseEntity<List<Book>> getAllBooksPublisherByTitle(@PathVariable String title) {
-		return new ResponseEntity<List<Book>>(bookService.findByBookPublisherTitle(title), HttpStatus.OK);
-	}
-	
-	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<Book> getBookById(@PathVariable long id) throws IdNotFoundException {
 		return new ResponseEntity<Book>(bookService.findBookById(id), HttpStatus.OK);
@@ -49,7 +44,7 @@ public class BookController {
 	
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Book> createBook(@Valid @RequestBody Book book) throws InvalidCreationException {
+	public ResponseEntity<Book> createBook(@Valid @RequestBody BookDto book) throws InvalidCreationException {
 		return new ResponseEntity<Book>(bookService.createBook(book), HttpStatus.CREATED);
 	}
 	
