@@ -28,9 +28,12 @@ public class BookService {
 		}
 		
 		Book book = new Book();
-		book.setBookPublisher(bookPublisherRepository.findById(bookDto.getBookPublisherId()).get());
+		if(!bookPublisherRepository.existsByName(bookDto.getbookPublisherName())) {
+			throw new InvalidCreationException("BookPublisher does not exists");
+		}
+		book.setBookPublisher(bookPublisherRepository.findByName(bookDto.getbookPublisherName()));
 		book.setPages(bookDto.getPages());
-		book.setTitle(bookDto.getTitle());	
+		book.setTitle(bookDto.getTitle());							
 				
 		return bookRepository.save(book);
 	}	
@@ -39,10 +42,6 @@ public class BookService {
 		return bookRepository.findAll();
 	}
 	
-	public List<Book> findByBookPublisherTitle(String title) {
-		return bookRepository.findByBookPublisherName(title);
-	}
-
 	@NotFound
 	public Book findBookById(long id) throws IdNotFoundException {
 		if (!bookRepository.existsById(id)) {

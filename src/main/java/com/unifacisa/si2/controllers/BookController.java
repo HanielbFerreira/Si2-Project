@@ -30,32 +30,27 @@ public class BookController {
 	@Autowired
 	private BookService bookService;
 	
-	@CrossOrigin
 	@GetMapping
 	public ResponseEntity<List<Book>> getAllBooks() {
 		return new ResponseEntity<List<Book>>(bookService.findAll(), HttpStatus.OK);
 	}
 	
-	@CrossOrigin
 	@GetMapping("/{id}")
 	public ResponseEntity<Book> getBookById(@PathVariable long id) throws IdNotFoundException {
 		return new ResponseEntity<Book>(bookService.findBookById(id), HttpStatus.OK);
 	}
 	
-	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Book> createBook(@Valid @RequestBody BookDto book) throws InvalidCreationException {
 		return new ResponseEntity<Book>(bookService.createBook(book), HttpStatus.CREATED);
 	}
 	
-	@CrossOrigin
 	@DeleteMapping("/{id}")
 	public ResponseEntity<String> deleteBook(@PathVariable long id) throws IdNotFoundException {
 		bookService.deleteBook(id);
 		return new ResponseEntity<String>("Book successfully deleted", HttpStatus.OK);
 	}
 	
-	@CrossOrigin
 	@PutMapping("/{id}")
 	public ResponseEntity<Book> updateBook(@PathVariable long id,@Valid @RequestBody Book book) throws IdNotFoundException {
 		return new ResponseEntity<Book>(bookService.updateBook(id, book), HttpStatus.OK);

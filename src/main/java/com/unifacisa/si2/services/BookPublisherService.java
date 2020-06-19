@@ -14,7 +14,7 @@ public class BookPublisherService {
 	@Autowired
 	private BookPublisherRepository bookPublisherRepository;
 	
-	public BookPublisher createBookPublishew(BookPublisher bookPublisher) {
+	public BookPublisher createBookPublisher(BookPublisher bookPublisher) {
 		return bookPublisherRepository.save(bookPublisher);
 	}
 	
@@ -28,6 +28,10 @@ public class BookPublisherService {
 	
 	public void deleteBookPublisher(Long id) {
 		bookPublisherRepository.deleteById(id);
+	}
+	
+	public BookPublisher findByName(String name) {
+		return bookPublisherRepository.findByName(name);
 	}
 
 }

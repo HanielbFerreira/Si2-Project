@@ -21,7 +21,6 @@ public class Book {
 	private long id;
 
 	@ManyToOne
-//	@NotEmpty(message = "Enter the name of the publisher") 
 	private BookPublisher bookPublisher;
 
 	@NotEmpty(message = "Enter the title of the book") 
